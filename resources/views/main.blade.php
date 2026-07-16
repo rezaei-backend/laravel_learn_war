@@ -17,7 +17,7 @@
                     <td>{{$item->title}} </td>
                     <td>{{$item->price}} تومان</td>
                     <td>
-                        <a class="btn btn-primary">ویرایش</a>
+                        <a href="{{route('items.edit', $item->id)}}" class="btn btn-primary">ویرایش</a>
                         <a class="btn btn-danger">حذف</a>
                     </td>
                 </tr>

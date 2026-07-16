@@ -32,25 +32,11 @@ class MainController extends Controller
     }
 
 
-
-//    public function store(Request $request)
-//    {
-//        $validated = $request->validate([
-//            'title' => 'required|string|max:25|unique:category',
-//            'category_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-//        ]);
-//        $imageName = time().'divar'.'.'.$request->category_image->extension();
-//        $request->category_image->move(public_path('images'), $imageName);
-//
-//        $city = Category::create([
-//            'title' => $validated['title'],
-//            'category_image'=>'images/'.$imageName,
-//        ]);
-//
-//        return redirect()->back()->with('success', 'Product created successfully.');
-//    }
-
-
+    public function edit(string $id)
+    {
+        $item = Item::find($id);
+        return view('edit' , compact('item'));
+    }
 
 
 }
