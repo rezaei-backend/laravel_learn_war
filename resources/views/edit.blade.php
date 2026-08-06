@@ -3,15 +3,13 @@
     <div class="col-12">
         <h1>فرم ویرایش آیتم</h1>
         <form action="{{route('items.update' , $item->id)}}" method="post">
-
-
+            @csrf
+            @method('PUT')
             @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session()->get('message') }}
                 </div>
             @endif
-
-
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

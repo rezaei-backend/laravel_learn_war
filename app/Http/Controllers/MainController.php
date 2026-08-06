@@ -21,7 +21,7 @@ class MainController extends Controller
             'price' => ['required'],
         ]);
 
-        $city = Item::create([
+        Item::create([
             'title' => $validated['title'],
             'price' => $validated['price'],
 
@@ -38,5 +38,26 @@ class MainController extends Controller
         return view('edit' , compact('item'));
     }
 
+
+    public  function  update(Request $request ,string $id)
+    {
+        $item = Item::findOrFail($id);
+        $validated=$request->validate([
+            'title' => ['required', 'max:255'],
+            'price' => ['required'],
+        ]);
+        $item->update($validated);
+
+        return redirect()->back()->with(['message' => 'با موفقیت ویرایش شد']);
+
+    }
+
+
+    public function destroy(string $id)
+    {
+        $item = Item::findOrFail($id);
+        $item::destroy($id);
+        return redirect()->back()->with(['message' => 'با موفقیت حذف شد']);
+    }
 
 }

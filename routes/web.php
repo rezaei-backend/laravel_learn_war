@@ -15,5 +15,4 @@ Route::get('/', function () {
 //Route::get('/items', [MainController::class, 'index']);
 //Route::post('/items', [MainController::class, 'store'])->name('items');
 
-
 Route::resource('items', MainController::class)->names('items');
