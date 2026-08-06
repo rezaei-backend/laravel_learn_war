@@ -51,8 +51,6 @@ class MainController extends Controller
         return redirect()->back()->with(['message' => 'با موفقیت ویرایش شد']);
 
     }
-
-
     public function destroy(string $id)
     {
         $item = Item::findOrFail($id);

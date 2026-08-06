@@ -18,9 +18,37 @@
                     <td>{{$item->price}} تومان</td>
                     <td>
                         <a href="{{route('items.edit', $item->id)}}" class="btn btn-primary">ویرایش</a>
-                        <a class="btn btn-danger">حذف</a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodal{{$item->id}}">
+                            حذف
+                        </button>
                     </td>
                 </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="deletemodal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                               آیا از حذف {{$item->title}} مطمن هستید؟
+                            </div>
+{{--                            <div class="modal-footer">--}}
+{{--                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--}}
+{{--                                <button type="button" class="btn btn-primary">Save changes</button>--}}
+{{--                            </div>--}}
+
+
+                            <form action="{{route('items.destroy' , $item->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input class="btn btn-danger" type="submit" value="حذف">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
             @endforeach
             </tbody>
         </table>
