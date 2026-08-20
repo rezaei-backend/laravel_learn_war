@@ -17,11 +17,14 @@ class MainController extends Controller
     public  function store(Request $request)
     {
         $validated=$request->validate([
+            'image' => ['required'],
             'title' => ['required', 'max:255'],
             'price' => ['required'],
         ]);
+        $path=$request->file('image')->store('uploads' , 'public');
 
         Item::create([
+            'image' => $path,
             'title' => $validated['title'],
             'price' => $validated['price'],
 

@@ -16,6 +16,7 @@
                     <th scope="row">1</th>
                     <td>{{$item->title}} </td>
                     <td>{{$item->price}} تومان</td>
+                    <td><img width="25px" src="{{asset('storage')."/".$item->image}}"></td>
                     <td>
                         <a href="{{route('items.edit', $item->id)}}" class="btn btn-primary">ویرایش</a>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodal{{$item->id}}">
@@ -55,7 +56,7 @@
     </div>
     <div class="col-12">
         <h1>فرم ثبت آیتم</h1>
-        <form action="{{route('items.store')}}" method="post">
+        <form action="{{route('items.store')}}" method="post" enctype="multipart/form-data">
 
 
             @if(session()->has('message'))
@@ -83,7 +84,8 @@
                 <input name="price" type="text" class="form-control" id="exampleInputPassword1">
             </div>
             <br>
-
+                <label>عکس آیتم</label>
+                <input type="file" name="image">
             <button type="submit" class="btn btn-primary">ثبت فرم</button>
         </form>
     </div>
